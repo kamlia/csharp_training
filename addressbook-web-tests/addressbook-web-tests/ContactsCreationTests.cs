@@ -46,7 +46,7 @@ namespace WebAddressbookTests
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
             GoToContactsPage();
-            ContactsData contacts = new ContactsData("roman", "romashkin"); 
+            ContactsData contacts = new ContactsData("roman", "romashkin");
             FillContactsForm(contacts);
             SubmitContactsCreation();
             ReturnToContactsPage();
@@ -54,20 +54,20 @@ namespace WebAddressbookTests
 
         private void ReturnToContactsPage()
         {
-            
+
             driver.FindElement(By.LinkText("home page")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
         }
 
         private void SubmitContactsCreation()
         {
-            
+
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
         }
 
         private void FillContactsForm(ContactsData contacts)
         {
-            
+
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contacts.Firstname);
@@ -78,7 +78,7 @@ namespace WebAddressbookTests
 
         private void GoToContactsPage()
         {
-            
+
             driver.FindElement(By.LinkText("add new")).Click();
         }
 
@@ -97,56 +97,12 @@ namespace WebAddressbookTests
 
         private void OpenHomePage()
         {
-            
+
             driver.Navigate().GoToUrl(baseURL);
-        }
-
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
         }
     }
 }
+
+       
+
+       
