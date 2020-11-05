@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 
 {
-    class ContactsData
+    public class ContactsData :TestBase
     {
-        private string firstname;
-        private string lastname;
+        public string firstname;
+        public string lastname;
 
         public ContactsData(string firstname, string lastname)
         {

@@ -41,7 +41,7 @@ namespace WebAddressbookTests
         }
         protected void GoToHomePage()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/edit.php");
+            driver.Navigate().GoToUrl("http://localhost/addressbook/");
         }
         protected void Login(AccountData account)
         {
@@ -90,11 +90,7 @@ namespace WebAddressbookTests
         }
         protected void GoToContactsPage()
         {
-            driver.FindElement(By.LinkText("home")).Click();
-        }
-        protected void RemoveContact()
-        {
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.FindElement(By.LinkText("add new")).Click();
         }
 
         protected void SelectContacts(int index)
@@ -104,7 +100,12 @@ namespace WebAddressbookTests
             acceptNextAlert = true;
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
         }
-        private string CloseAlertAndGetItsText()
+
+        protected void RemoveContact()
+        {
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+        }
+        protected string CloseAlertAndGetItsText()
         {
             try
             {
@@ -125,5 +126,31 @@ namespace WebAddressbookTests
                 acceptNextAlert = true;
             }
         }
+        
+        protected void ReturnToContactsPage()
+        {
+
+            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
+
+        protected void SubmitContactsCreation()
+        {
+
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+        }
+
+        protected void FillContactsForm(ContactsData contacts)
+        {
+
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contacts.Firstname);
+            driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contacts.Lastname);
+        }
+
+    
     }
 }

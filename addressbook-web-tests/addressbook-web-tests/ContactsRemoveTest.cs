@@ -16,10 +16,13 @@ namespace WebAddressbookTests
         public void ContactRemovalTest()
         {
             GoToHomePage();
-            Login(new AccountData("admin","secret"));
-            GoToContactsPage();
+            Login(new AccountData("admin", "secret"));
             SelectContacts(1);
             RemoveContact();
+            
+        }
+
+        
         }
     }
-}
+
